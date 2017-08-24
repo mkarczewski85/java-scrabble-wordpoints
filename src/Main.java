@@ -18,19 +18,26 @@ public class Main {
 
     public static void main(String[] args) {
         String fileName = "slowa.txt";
-        Map<String, String> wordMap = new HashMap<>();
+        Map<String, Integer> wordMap = new HashMap<>();
 
         try (BufferedReader br = Files.newBufferedReader(Paths.get(fileName))) {
-
-            br.
+            String wordLine = null;
+            while ((wordLine = br.readLine()) != null){
+                wordMap.put(wordLine, calcPoints(wordLine));
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        System.out.print("Podaj słowo: ");
+        Scanner in = new Scanner(System.in);
+        String search = in.nextLine();
 
-
-
+        if (wordMap.containsKey(search)){
+            System.out.println("Takie słowo występuje");
+            System.out.println("Punkty: " + calcPoints(search));
+        }
 
     }
 
