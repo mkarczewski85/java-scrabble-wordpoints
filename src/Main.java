@@ -1,6 +1,8 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 
 public class Main {
 
@@ -12,9 +14,20 @@ public class Main {
             new LetterSet(6, "ć"),
             new LetterSet(7, "ń"),
             new LetterSet(9, "ź")
-    );;
+    );
 
     public static void main(String[] args) {
+        String fileName = "slowa.txt";
+        Map<String, String> wordMap = new HashMap<>();
+
+        try (BufferedReader br = Files.newBufferedReader(Paths.get(fileName))) {
+
+            br.
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
 
 
@@ -59,7 +72,7 @@ public class Main {
 
         public LetterSet(int score, String letters) {
             this.score = score;
-            this.letters = new ArrayList<Character>(letters.length());
+            this.letters = new ArrayList<>(letters.length());
             for (char letter : letters.toCharArray()) {
                 this.letters.add(letter);
             }
