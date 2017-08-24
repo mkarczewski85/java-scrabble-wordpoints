@@ -6,6 +6,7 @@ import java.util.*;
 
 public class Main {
 
+
     private static List<LetterSet> letterSets = Arrays.asList(
             new LetterSet(1, "aeinorswz"),
             new LetterSet(2, "cdklmpty"),
@@ -22,7 +23,7 @@ public class Main {
 
         try (BufferedReader br = Files.newBufferedReader(Paths.get(fileName))) {
             String wordLine = null;
-            while ((wordLine = br.readLine()) != null){
+            while ((wordLine = br.readLine()) != null) {
                 wordMap.put(wordLine, calcPoints(wordLine));
             }
 
@@ -34,15 +35,18 @@ public class Main {
         Scanner in = new Scanner(System.in);
         String search = in.nextLine();
 
-        if (wordMap.containsKey(search)){
+        if (wordMap.containsKey(search)) {
             System.out.println("Takie słowo występuje");
             System.out.println("Punkty: " + calcPoints(search));
+        } else {
+            System.out.println("Nie ma takiego słowa!");
         }
 
     }
 
     /**
      * Metoda zwracająca końcową wartość punktów dla całego słowa
+     *
      * @param word
      * @return
      */
@@ -56,6 +60,7 @@ public class Main {
 
     /**
      * Metoda zwracająca wartość punktów dla pojedynczej litery
+     *
      * @param letter
      * @return
      */
@@ -63,7 +68,7 @@ public class Main {
         int score = 0;
         for (LetterSet letterSet : letterSets) {
             if (letterSet.containsLetter(letter)) {
-                score =  letterSet.getScore();
+                score = letterSet.getScore();
             }
         }
         return score;
@@ -85,10 +90,21 @@ public class Main {
             }
         }
 
+        /**
+         * Zwraca wynik
+         *
+         * @return
+         */
         public int getScore() {
             return score;
         }
 
+        /**
+         * Sprawdza czy litera znajduje się na liście
+         *
+         * @param letter
+         * @return
+         */
         public boolean containsLetter(Character letter) {
             return letters.contains(letter);
         }
